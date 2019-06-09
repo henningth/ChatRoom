@@ -26,7 +26,8 @@ Server functions
 """
 
 """
-This function accepts incoming connections from clients
+This function listens for incoming connections from clients.
+When a client connects, it creates a new thread for this client
 """
 def acceptConnection():
     
@@ -35,6 +36,10 @@ def acceptConnection():
 
 """
 This function listens for messages from clients
+Each connected client thread runs one instance of this function.
+This function sends the clients' message to all other clients using 
+the broadcastMessage() function.
+When the client types Quit, the thread is terminated.
 """
 def receiveMessage():
     
@@ -43,6 +48,7 @@ def receiveMessage():
 
 """
 This function broadcasts messages to all clients
+It is called from the receiveMessage function.
 """
 def broadcastMessage():
     
